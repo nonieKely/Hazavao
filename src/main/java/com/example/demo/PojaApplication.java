@@ -9,5 +9,6 @@ public class PojaApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(PojaApplication.class, args);
+
   }
 }

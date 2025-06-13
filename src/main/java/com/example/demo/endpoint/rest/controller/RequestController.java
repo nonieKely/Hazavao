@@ -16,15 +16,15 @@ public class RequestController {
     @Value("${openai.api.key}")
     private String apiKey;
 
+
     private final RestTemplate restTemplate = new RestTemplate();
 
     @GetMapping("/hazavao")
     public String hazavao(@RequestParam String teny) {
         String url = "https://api.openai.com/v1/chat/completions";
-
         Map<String, Object> message = Map.of(
                 "role", "user",
-                "content", "Hazavao amin'ny teny malagasy ny teny hoe : " + teny
+                "content", "Hazavao amin'ny teny Malagasy ny mombamomba'ity teny ity : " + teny
         );
 
         Map<String, Object> body = Map.of(
@@ -38,7 +38,9 @@ public class RequestController {
 
         HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
 
+
         ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
+        System.out.println("API key : " + apiKey);
 
         Map<?, ?> json = response.getBody();
         if (json == null) return "Erreur: réponse vide";
