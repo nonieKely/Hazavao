@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 public class RequestController {
-
+    // new key provided by Tanjona because the old one is not available anymore
     @Value("${openai.api.key}")
     private String apiKey;
 
