@@ -12,9 +12,6 @@ import java.util.Map;
 
 @RestController
 public class RequestController {
-    // new key provided by Tanjona because the old one is not available anymore
-    @Value("${openai.api.key}")
-    private String apiKey;
 
 
     private final RestTemplate restTemplate = new RestTemplate();
@@ -34,13 +31,13 @@ public class RequestController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(apiKey);
+        headers.setBearerAuth("apiKey");
 
         HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
 
 
         ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
-        System.out.println("API key : " + apiKey);
+        System.out.println("API key : " + "apiKey");
 
         Map<?, ?> json = response.getBody();
         if (json == null) return "Erreur: réponse vide";
